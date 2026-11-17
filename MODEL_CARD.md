@@ -14,7 +14,7 @@ metrics:
 - f1
 - accuracy
 model-index:
-- name: indobert-base-p1-smsa-sentiment
+- name: indobert-base-p1-finetuned-smsa
   results:
   - task:
       type: text-classification
@@ -33,20 +33,20 @@ model-index:
       value: 0.9200
 ---
 
-# IndoBERT base — Indonesian sentiment (SmSA)
+# indobert-base-p1-finetuned-smsa
 
 [`indobenchmark/indobert-base-p1`](https://huggingface.co/indobenchmark/indobert-base-p1)
 fine-tuned for 3-class Indonesian sentiment classification (`positive`, `neutral`,
 `negative`) on **SmSA** from the [IndoNLU](https://github.com/IndoNLP/indonlu) benchmark.
 
-Training code: https://github.com/zackyalgiffari/sentimen-model
+Training code: https://github.com/zackyalgiffari/indobert-sentiment-indonesian
 
 ## Usage
 
 ```python
 from transformers import pipeline
 
-clf = pipeline("text-classification", model="zackyalgiffari/indobert-base-p1-smsa-sentiment")
+clf = pipeline("text-classification", model="zackyalgiffari/indobert-base-p1-finetuned-smsa")
 clf("makanannya enak dan pelayanannya ramah")
 ```
 

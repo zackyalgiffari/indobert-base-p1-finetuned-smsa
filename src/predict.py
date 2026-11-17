@@ -10,7 +10,7 @@ import argparse
 
 from transformers import pipeline
 
-DEFAULT_MODEL = "zackyalgiffari/indobert-base-p1-smsa-sentiment"
+DEFAULT_MODEL = "zackyalgiffari/indobert-base-p1-finetuned-smsa"
 
 
 def main() -> None:

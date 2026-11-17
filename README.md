@@ -1,4 +1,4 @@
-# sentimen-model
+# indobert-sentiment-indonesian
 
 Fine-tuning **IndoBERT** (`indobenchmark/indobert-base-p1`) for Indonesian sentiment
 analysis (positive / neutral / negative) on the public **SmSA** dataset from the
@@ -8,7 +8,7 @@ Colab GPU through the [`colab` CLI](https://pypi.org/project/google-colab-cli/).
 ## Results
 
 <!-- RESULTS:START -->
-Model: [`zackyalgiffari/indobert-base-p1-smsa-sentiment`](https://huggingface.co/zackyalgiffari/indobert-base-p1-smsa-sentiment)
+Model: [`zackyalgiffari/indobert-base-p1-finetuned-smsa`](https://huggingface.co/zackyalgiffari/indobert-base-p1-finetuned-smsa)
 — trained on a Colab **NVIDIA L4** (bf16) in 2.5 minutes,
 transformers 5.22.1, torch 2.14.1+cu130.
 
@@ -82,7 +82,7 @@ Hub, a Hugging Face token at `~/.cache/huggingface/token`.
 scripts/colab_train.sh --smoke
 
 # full training + upload the model to the Hugging Face Hub (private repo)
-scripts/colab_train.sh --push-to-hub zackyalgiffari/indobert-base-p1-smsa-sentiment
+scripts/colab_train.sh --push-to-hub zackyalgiffari/indobert-base-p1-finetuned-smsa
 
 # another GPU / other hyperparameters
 GPU=A100 scripts/colab_train.sh --epochs 3 --lr 3e-5
@@ -104,7 +104,7 @@ python -m src.predict "makanannya enak dan pelayanannya ramah" "pengirimannya la
 
 ```python
 from transformers import pipeline
-clf = pipeline("text-classification", model="zackyalgiffari/indobert-base-p1-smsa-sentiment")
+clf = pipeline("text-classification", model="zackyalgiffari/indobert-base-p1-finetuned-smsa")
 clf("tempatnya nyaman, pasti balik lagi")
 ```
 

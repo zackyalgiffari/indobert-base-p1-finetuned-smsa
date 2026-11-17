@@ -2,7 +2,7 @@
 # Fine-tune on a Colab GPU via the `colab` CLI, then fetch the results and release the VM.
 #
 #   scripts/colab_train.sh --smoke
-#   scripts/colab_train.sh --push-to-hub zackyalgiffari/indobert-base-p1-smsa-sentiment
+#   scripts/colab_train.sh --push-to-hub zackyalgiffari/indobert-base-p1-finetuned-smsa
 #
 # Every argument is forwarded to `python -m src.train`.
 # Env: GPU (default L4), SESSION (default sentimen-<timestamp>), POLL_SECONDS (default 30),
