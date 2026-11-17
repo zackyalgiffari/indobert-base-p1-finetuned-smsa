@@ -1,4 +1,4 @@
-# indobert-sentiment-indonesian
+# indobert-base-p1-finetuned-smsa
 
 Fine-tuning **IndoBERT** (`indobenchmark/indobert-base-p1`) for Indonesian sentiment
 analysis (positive / neutral / negative) on the public **SmSA** dataset from the

@@ -39,7 +39,7 @@ model-index:
 fine-tuned for 3-class Indonesian sentiment classification (`positive`, `neutral`,
 `negative`) on **SmSA** from the [IndoNLU](https://github.com/IndoNLP/indonlu) benchmark.
 
-Training code: https://github.com/zackyalgiffari/indobert-sentiment-indonesian
+Training code: https://github.com/zackyalgiffari/indobert-base-p1-finetuned-smsa
 
 ## Usage
 
