@@ -117,13 +117,19 @@ def main() -> None:
         args.model, num_labels=len(LABELS), id2label=ID2LABEL, label2id=LABEL2ID
     )
 
+    # transformers v5 folded `warmup_ratio` into `warmup_steps` (a float < 1 is a ratio).
+    if int(transformers.__version__.split(".")[0]) >= 5:
+        warmup = {"warmup_steps": args.warmup_ratio}
+    else:
+        warmup = {"warmup_ratio": args.warmup_ratio}
+
     training_args = TrainingArguments(
         output_dir=args.output_dir,
         num_train_epochs=args.epochs,
         learning_rate=args.lr,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size * 2,
-        warmup_ratio=args.warmup_ratio,
+        **warmup,
         weight_decay=args.weight_decay,
         lr_scheduler_type="linear",
         eval_strategy="epoch",
