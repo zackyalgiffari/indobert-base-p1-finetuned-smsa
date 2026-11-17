@@ -13,6 +13,24 @@ tags:
 metrics:
 - f1
 - accuracy
+model-index:
+- name: indobert-base-p1-smsa-sentiment
+  results:
+  - task:
+      type: text-classification
+      name: Sentiment Analysis
+    dataset:
+      name: IndoNLU SmSA
+      type: indonlp/indonlu
+      config: smsa
+      split: test
+    metrics:
+    - type: f1
+      name: Macro F1
+      value: 0.8974
+    - type: accuracy
+      name: Accuracy
+      value: 0.9200
 ---
 
 # IndoBERT base — Indonesian sentiment (SmSA)
@@ -34,9 +52,16 @@ clf("makanannya enak dan pelayanannya ramah")
 
 ## Evaluation
 
-See `metrics.json` and `classification_report.txt` in this repository (SmSA validation
-and test splits). The main metric is macro-F1, because `neutral` is only ~10% of the
-training data.
+SmSA, best checkpoint selected on validation macro-F1 (epoch 3).
+
+| Split | Accuracy | Macro-P | Macro-R | Macro-F1 |
+|---|---:|---:|---:|---:|
+| validation (1,260) | 94.29 | 92.40 | 91.83 | **92.04** |
+| test (500) | 92.00 | 92.50 | 88.12 | **89.74** |
+
+Per-class test F1: positive 93.78, neutral 81.29, negative 94.15. `neutral` is the
+hardest class (recall 71.6%) and is only ~10% of the training data, which is why
+macro-F1 is the headline metric. Full numbers: `metrics.json`, `classification_report.txt`.
 
 ## Training
 

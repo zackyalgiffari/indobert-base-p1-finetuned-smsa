@@ -8,7 +8,37 @@ Colab GPU through the [`colab` CLI](https://pypi.org/project/google-colab-cli/).
 ## Results
 
 <!-- RESULTS:START -->
-_No results yet — run `scripts/colab_train.sh`._
+Model: [`zackyalgiffari/indobert-base-p1-smsa-sentiment`](https://huggingface.co/zackyalgiffari/indobert-base-p1-smsa-sentiment)
+— trained on a Colab **NVIDIA L4** (bf16) in 2.5 minutes,
+transformers 5.22.1, torch 2.14.1+cu130.
+
+| Split | Accuracy | Macro-P | Macro-R | Macro-F1 |
+|---|---:|---:|---:|---:|
+| validation (1,260) | 94.29 | 92.40 | 91.83 | **92.04** |
+| test (500) | 92.00 | 92.50 | 88.12 | **89.74** |
+
+Per class (test): positive F1 93.78 · neutral F1 81.29 · negative F1 94.15.
+`neutral` is the hardest class: recall is 71.6% (25 of 88 neutral texts are predicted
+as positive or negative), while precision stays high (94.0%).
+
+<details><summary>Validation per epoch (best model = epoch 3)</summary>
+
+| Epoch | Accuracy | Macro-F1 | Loss |
+|---:|---:|---:|---:|
+| 1 | 93.10 | 90.44 | 0.1863 |
+| 2 | 94.13 | 91.32 | 0.1785 |
+| 3 | 94.29 | 92.04 | 0.2227 |
+| 4 | 94.05 | 91.42 | 0.2695 |
+| 5 | 94.29 | 92.01 | 0.2874 |
+
+Validation loss rises after epoch 2–3 while F1 plateaus — the model starts to overfit;
+`load_best_model_at_end` picks the checkpoint by macro-F1.
+</details>
+
+Details: [`results/metrics.json`](results/metrics.json),
+[`results/classification_report.txt`](results/classification_report.txt),
+confusion matrix [validation](results/confusion_matrix_validation.png) /
+[test](results/confusion_matrix_test.png).
 <!-- RESULTS:END -->
 
 ## Dataset

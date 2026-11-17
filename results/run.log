@@ -1,0 +1,60 @@
+[setup] 2026-11-17T04:39:14Z
+NVIDIA L4, 23034 MiB
+[setup] done
+[env] torch=2.14.1+cu130 transformers=5.22.1 cuda=True gpu=NVIDIA L4 bf16=True fp16=False
+DatasetDict({
+    train: Dataset({
+        features: ['text', 'label'],
+        num_rows: 11000
+    })
+    validation: Dataset({
+        features: ['text', 'label'],
+        num_rows: 1260
+    })
+    test: Dataset({
+        features: ['text', 'label'],
+        num_rows: 500
+    })
+})
+[tokens] train p50=33 p95=79 p99=89 max=132 truncated=0
+[transformers] You passed `num_labels=3` which is incompatible to the `id2label` map of length `5`.
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: indobenchmark/indobert-base-p1
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[validation] {"loss": 0.2227316051721573, "accuracy": 0.9428571428571428, "precision_macro": 0.9239925732701134, "recall_macro": 0.9183330174528576, "f1_macro": 0.9204481906800189, "confusion_matrix": [[697, 8, 30], [10, 110, 11], [8, 5, 381]]}
+[test] {"loss": 0.32302767038345337, "accuracy": 0.92, "precision_macro": 0.9249923774252803, "recall_macro": 0.8811703002879474, "f1_macro": 0.8973847531669904, "confusion_matrix": [[196, 4, 8], [11, 63, 14], [3, 0, 201]]}
+=== validation ===
+              precision    recall  f1-score   support
+
+    positive     0.9748    0.9483    0.9614       735
+     neutral     0.8943    0.8397    0.8661       131
+    negative     0.9028    0.9670    0.9338       394
+
+    accuracy                         0.9429      1260
+   macro avg     0.9240    0.9183    0.9204      1260
+weighted avg     0.9439    0.9429    0.9429      1260
+
+=== test ===
+              precision    recall  f1-score   support
+
+    positive     0.9333    0.9423    0.9378       208
+     neutral     0.9403    0.7159    0.8129        88
+    negative     0.9013    0.9853    0.9415       204
+
+    accuracy                         0.9200       500
+   macro avg     0.9250    0.8812    0.8974       500
+weighted avg     0.9215    0.9200    0.9173       500
+
+[hub] pushed to https://huggingface.co/zackyalgiffari/indobert-base-p1-smsa-sentiment
+[predict] sanity check on the saved model
+positive  makanannya enak dan pelayanannya ramah, pasti balik lagi
+          (positive=1.000, negative=0.000, neutral=0.000)
+ neutral  rapat koordinasi akan diadakan hari senin di kantor kecamatan
+          (neutral=0.999, negative=0.000, positive=0.000)
+negative  pengirimannya lambat sekali dan barangnya rusak, kecewa
+          (negative=0.999, positive=0.001, neutral=0.000)
