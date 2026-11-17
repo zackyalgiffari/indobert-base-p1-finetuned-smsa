@@ -96,9 +96,9 @@ def main() -> None:
 
     ds = load_smsa()
     if args.smoke:
-        ds["train"] = ds["train"].shuffle(seed=args.seed).select(range(256))
-        ds["validation"] = ds["validation"].select(range(128))
-        ds["test"] = ds["test"].select(range(128))
+        # The TSVs are partly ordered by label, so shuffle before taking a subset.
+        for split, n in (("train", 256), ("validation", 128), ("test", 128)):
+            ds[split] = ds[split].shuffle(seed=args.seed).select(range(n))
         args.epochs = 1
     print(ds, flush=True)
 
